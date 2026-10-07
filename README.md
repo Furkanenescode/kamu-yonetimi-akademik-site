@@ -1,35 +1,29 @@
-# Kamu Yönetimi Akademik Site
+document.getElementById("year").textContent = new Date().getFullYear();
 
-Bu proje, kamu yönetimi alanına yönelik akademik ve modern bir web sitesi tasarlamak için oluşturulmuştur. Proje statik HTML/CSS/JavaScript kullanmaktadır.
+const navToggle = document.querySelector(".mobile-nav-toggle");
+const mainNav = document.querySelector(".main-nav");
 
-## Özellikler
+if (navToggle && mainNav) {
+  navToggle.addEventListener("click", () => {
+    mainNav.classList.toggle("is-open");
+  });
+}
 
-- Modern ve akademik tasarım
-- Kamu yönetimi temalı içerik yapısı
-- Eğitim, yayınlar, alanlar ve iletişim bölümleri
-- Mobil uyumlu düzen
-- Kolayca kişiselleştirilebilir içerik yapısı
+const form = document.querySelector(".contact-form");
 
-## Proje Yapısı
+if (form) {
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const submitButton = form.querySelector("button");
+    const originalText = submitButton.textContent;
 
-- `index.html` – Ana sayfa içeriği
-- `style.css` – Tasarım ve responsive stiller
-- `script.js` – Yıl bilgisi ve form etkileşimi
+    submitButton.textContent = "Mesaj Gönderildi";
+    submitButton.disabled = true;
 
-## Görüntüleme
-
-1. Dosyaları bilgisayarınıza indirin.
-2. `index.html` dosyasını tarayıcıda açın.
-3. Gerekirse bir web sunucusu üzerinden yayınlayabilirsiniz.
-
-## Geliştirme Notu
-
-Bu site, sıfırdan başlatılan bir akademik tema örneğidir. İsterseniz ileride şu özellikleri de ekleyebilirsiniz:
-
-- Blog sayfası
-- Ders sayfası
-- Akademisyen profilleri
-- Haberler modülü
-- Türkçe/İngilizce çok dilli yapı
-- GitHub Pages ile yayınlama
-
+    setTimeout(() => {
+      submitButton.textContent = originalText;
+      submitButton.disabled = false;
+      form.reset();
+    }, 1800);
+  });
+}
